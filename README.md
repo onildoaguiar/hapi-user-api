@@ -25,6 +25,7 @@ RESTful API for user authentication
 * chai
 * eslint
 * mocha
+* nodemon
 
 
 ## License
