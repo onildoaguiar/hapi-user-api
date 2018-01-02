@@ -3,6 +3,7 @@ RESTful API for user authentication
 
 [![GitHub issues](https://img.shields.io/github/issues/onildoaguiar/hapi-user-api.svg "GitHub issues")](https://github.com/onildoaguiar/hapi-user-api)
 [![GitHub stars](https://img.shields.io/github/stars/onildoaguiar/hapi-user-api.svg "GitHub stars")](https://github.com/onildoaguiar/hapi-user-api)
+<img src="https://img.shields.io/badge/Language-%20JavaScript%20-f9e229.svg">
 
 # Endpoints
 * POST `api/v1/user/signUp`
