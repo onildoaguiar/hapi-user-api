@@ -16,18 +16,16 @@ RESTful API for user authentication
 ## Dependencies
 
 * node 8.9.3 (lts)
-* npm 5.5.1
+* yarn
 * hapi
 * mongoose
 
 ## Dev dependencies
 
 * babel
-* chai
+* jest
 * eslint
-* mocha
 * nodemon
-
 
 ## License
 
