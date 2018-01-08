@@ -6,30 +6,30 @@ const jwt = require('jsonwebtoken');
 const User = require('./user');
 
 module.exports.signUp = async (request, h) => {
-    const user = new User(request.body);
-
+    const user = new User(request.payload);
     user.password = sha256(user.password);
 
     try {
         await user.save();
-        return { user };
-    } catch (error) {
-        throw boom.badRequest(error.message);
-    }
+        return {user};
+    } catch (err) {
+        throw boom.badRequest(err.message);
+    };
 };
 
 module.exports.signIn = async (request, h) => {
-    let { password, email } = request.body;
+    let {password, email} = request.payload;
     password = sha256(password).toString();
 
     try {
-        const user = await User.findOne({ email, password });
+        const user = await User.findOne({email, password});
         const token = jwt.sign(user.toJSON(), 'secret');
-        return { token }
-    } catch (error) {
-        throw boom.badRequest(error.message);
-    }
+        return {token};
+    } catch (err) {
+        throw boom.badRequest(err.message);
+    };
 };
+
 module.exports.getById = (request, h) => {
     throw boom.badRequest('Bad Request');
 };

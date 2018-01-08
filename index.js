@@ -1,34 +1,21 @@
-'use strict'
+'use strict';
 
-const mongoose = require('mongoose');
 const Server = require('./src/server');
+const mongoose = require('mongoose');
+const mongoDBUrl = 'mongodb://admin:adm123@ds133627.mlab.com:33627/user-api';
 
 const Console = console;
-const dbUrl = 'mongodb://admin:adm@123@ds133627.mlab.com:33627/user-api';
 
 // Start the server
 const start = async () => {
   try {
-    await Server.start((error) => {
-      if (error) {
-        throw error;
-      }
-      // Once started, connect to Mongo through Mongoose
-      mongoose.connect(dbUrl, { useMongoClient: true }, (error) => {
-        if (error) {
-          throw error;
-        }
-      });
+    await Server.start();
 
-      var db = mongoose.connection;
-      db.on('error', console.error.bind(console, 'connection error:'));
-      db.once('open', function () {
-        Console.log('we are connected!');
-      });
-    });
+    mongoose.Promise = Promise;
+    mongoose.connect(mongoDBUrl, {useMongoClient: true}).then(() => { Console.log(`Connected to Mongo server`) }, err => { Console.log(err) });
 
-  } catch (error) {
-    Console.log(error);
+  } catch (err) {
+    Console.log(err);
     process.exit(1);
   }
 
