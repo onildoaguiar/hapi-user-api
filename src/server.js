@@ -1,18 +1,15 @@
+'use strict';
+
 const Hapi = require('hapi');
+const User = require('./apis/user/index');
 
 // Create a server with a host and port
 const server = Hapi.server({
-  host: 'localhost',
-  port: 3000,
+    host: 'localhost',
+    port: 3000,
 });
 
-// Add the route
-server.route({
-  method: 'GET',
-  path: '/',
-  handler() {
-    return 'hello hapi';
-  },
-});
+// Add the routes
+server.route(User.routes);
 
 module.exports = server;
