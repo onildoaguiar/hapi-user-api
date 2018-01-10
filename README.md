@@ -17,12 +17,13 @@ RESTful API for user authentication
 
 * node 8.9.3 (lts)
 * yarn
-* hapi
+* hapi 17
 * mongoose
+* jsonwebtoken
 
 ## Dev dependencies
 
-* babel
+*
 * jest
 * eslint
 * nodemon
