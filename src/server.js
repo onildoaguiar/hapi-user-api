@@ -1,7 +1,7 @@
 'use strict';
 
 const Hapi = require('hapi');
-const User = require('./apis/user/index');
+const User = require('./user/index');
 
 // Create a server with a host and port
 const server = Hapi.server({

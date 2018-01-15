@@ -11,27 +11,37 @@ module.exports.signUp = async (request, h) => {
 
     try {
         await user.save();
-        return {user};
+        return { user };
     } catch (err) {
         throw boom.badRequest(err.message);
     };
 };
 
 module.exports.signIn = async (request, h) => {
-    let {password, email} = request.payload;
+    let { password, email } = request.payload;
     password = sha256(password).toString();
 
     try {
-        const user = await User.findOne({email, password});
+        const user = await User.findOne({ email, password });
         const token = jwt.sign(user.toJSON(), 'secret');
-        return {token};
+        return { token };
     } catch (err) {
-        throw boom.badRequest(err.message);
+        throw boom.badRequest('Invalid email or password');
     };
 };
 
-module.exports.getById = (request, h) => {
-    throw boom.badRequest('Bad Request');
+module.exports.getById = async (request, h) => {
+    let id = request.params.id;
+    let bearer = request.headers.authorization;
+    let auxLength = ('Bearer ').length;
+    let token = bearer.substring(auxLength, bearer.length);
+
+    try {
+        jwt.verify(token, 'secret');
+        return await User.findById(id);
+    } catch (err) {
+        throw boom.badRequest(err);
+    }
 };
 
 module.exports.update = (request, h) => {
