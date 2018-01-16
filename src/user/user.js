@@ -38,7 +38,11 @@ const userModel = new Schema({
         type: Date,
         default: Date.now,
     },
-    token: String,
+    active: {
+        type: Boolean,
+        required: true,
+        default: true,
+    },
 });
 
 module.exports = mongoose.model('User', userModel);

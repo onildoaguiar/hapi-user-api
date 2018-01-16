@@ -38,16 +38,38 @@ module.exports.getById = async (request, h) => {
 
     try {
         jwt.verify(token, 'secret');
-        return await User.findById(id);
+        return await User.findOne({ _id: id, active: true });
     } catch (err) {
         throw boom.badRequest(err);
     }
 };
 
-module.exports.update = (request, h) => {
-    return 'Update a user by id';
+module.exports.update = async (request, h) => {
+    let id = request.params.id;
+    let bearer = request.headers.authorization;
+    let auxLength = ('Bearer ').length;
+    let token = bearer.substring(auxLength, bearer.length);
+
+    try {
+        jwt.verify(token, 'secret');
+        await User.update({ _id: id }, request.payload);
+        return await User.findOne({ _id: id });
+    } catch (err) {
+        throw boom.badRequest(err);
+    }
 };
 
-module.exports.delete = (request, h) => {
-    return 'Delete a user by id';
+module.exports.delete = async (request, h) => {
+    let id = request.params.id;
+    let bearer = request.headers.authorization;
+    let auxLength = ('Bearer ').length;
+    let token = bearer.substring(auxLength, bearer.length);
+
+    try {
+        jwt.verify(token, 'secret');
+        await User.update({ _id: id, active: false });
+        return await User.findOne({ _id: id });
+    } catch (err) {
+        throw boom.badRequest(err);
+    }
 };
