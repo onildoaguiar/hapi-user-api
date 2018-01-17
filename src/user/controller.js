@@ -3,6 +3,7 @@
 const boom = require('boom');
 const sha256 = require('crypto-js/sha256');
 const jwt = require('jsonwebtoken');
+const TokenExtractor = require('../libs/extractor');
 const User = require('./user');
 
 module.exports.signUp = async (request, h) => {
@@ -22,19 +23,17 @@ module.exports.signIn = async (request, h) => {
     password = sha256(password).toString();
 
     try {
-        const user = await User.findOne({ email, password });
+        const user = await User.findOne({ email, password, active: true });
         const token = jwt.sign(user.toJSON(), 'secret');
         return { token };
     } catch (err) {
-        throw boom.badRequest('Invalid email or password');
+        throw boom.badRequest('Invalid email or password' + err);
     };
 };
 
 module.exports.getById = async (request, h) => {
     let id = request.params.id;
-    let bearer = request.headers.authorization;
-    let auxLength = ('Bearer ').length;
-    let token = bearer.substring(auxLength, bearer.length);
+    let token = TokenExtractor.extract(request);
 
     try {
         jwt.verify(token, 'secret');
@@ -46,9 +45,7 @@ module.exports.getById = async (request, h) => {
 
 module.exports.update = async (request, h) => {
     let id = request.params.id;
-    let bearer = request.headers.authorization;
-    let auxLength = ('Bearer ').length;
-    let token = bearer.substring(auxLength, bearer.length);
+    let token = TokenExtractor.extract(request);
 
     try {
         jwt.verify(token, 'secret');
@@ -61,9 +58,7 @@ module.exports.update = async (request, h) => {
 
 module.exports.delete = async (request, h) => {
     let id = request.params.id;
-    let bearer = request.headers.authorization;
-    let auxLength = ('Bearer ').length;
-    let token = bearer.substring(auxLength, bearer.length);
+    let token = TokenExtractor.extract(request);
 
     try {
         jwt.verify(token, 'secret');
