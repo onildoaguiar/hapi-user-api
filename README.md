@@ -22,6 +22,7 @@ RESTful API for user authentication
 * mongoose
 * jsonwebtoken
 * crypto-js
+* dotenv
 
 ## Dev dependencies
 
