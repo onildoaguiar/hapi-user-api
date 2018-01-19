@@ -3,9 +3,9 @@
 const Routes = require('./routes');
 
 module.exports.routes = [
-    Routes.signUp,
-    Routes.signIn,
-    Routes.getById,
-    Routes.update,
-    Routes.delete,
+	Routes.signUp,
+	Routes.signIn,
+	Routes.getById,
+	Routes.update,
+	Routes.delete
 ];

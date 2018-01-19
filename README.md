@@ -27,7 +27,7 @@ RESTful API for user authentication
 
 * jest
 * eslint
-* eslint-config-google
+* eslint-config-standard
 * nodemon
 * supertest
 
