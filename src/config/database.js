@@ -9,7 +9,7 @@ const Console = console;
 module.exports.start = () => {
 	mongoose.Promise = Promise;
 	mongoose.connect(mongoDBUrl, { useMongoClient: true }).then(() => {
-		Console.log(`Connected to Mongo server`);
+		Console.log('Connected to MongoDB');
 	}, (err) => {
 		Console.log(err);
 	});
