@@ -29,6 +29,7 @@ RESTful API for user authentication
 * eslint
 * eslint-config-google
 * nodemon
+* supertest
 
 ## License
 
