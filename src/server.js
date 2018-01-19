@@ -1,13 +1,13 @@
 'use strict';
 
 const Hapi = require('hapi');
-const User = require('./user/index');
+const User = require('./user');
 const AuthScheme = require('./authorization');
 
 // Create a server with a host and port
 const server = Hapi.server({
-    host: 'localhost',
-    port: 3000,
+	host: 'localhost',
+	port: 3000
 });
 
 // Add auth scheme
