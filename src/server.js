@@ -6,7 +6,7 @@ const AuthScheme = require('./authorization');
 const Config = require('./config/env');
 
 // Create a server with a host and port
-const server = Hapi.server({
+const server = new Hapi.Server({
 	host: Config.server.host || 'localhost',
 	port: Config.server.port || 3000
 });
@@ -19,3 +19,5 @@ server.auth.strategy('default', 'hapi-user-api');
 server.route(User.routes);
 
 module.exports = server;
+
+module.exports.listerner = () => server.listener;

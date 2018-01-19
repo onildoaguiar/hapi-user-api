@@ -15,7 +15,7 @@ module.exports = function () {
 
 			try {
 				const credentials = jwt.verify(token, 'secret');
-        
+
 				return h.authenticated({ credentials, artifacts: token });
 			} catch (err) {
 				return h.unauthenticated(boom.unauthorized(err.message, 'Bearer'));

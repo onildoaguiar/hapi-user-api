@@ -7,16 +7,15 @@ const Console = console;
 
 // Start the server
 const start = async () => {
-  try {
-    await Server.start();
-    Database.start();
+	try {
+		await Server.start();
+		await Database.start();
+	} catch (err) {
+		Console.log(err);
+		process.exit(1);
+	}
 
-  } catch (err) {
-    Console.log(err);
-    process.exit(1);
-  }
-
-  Console.log('Server running at:', Server.info.uri);
+	Console.log('Server running at:', Server.info.uri);
 };
 
 start();
