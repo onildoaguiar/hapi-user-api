@@ -11,20 +11,20 @@ module.exports.signUp = async (request, h) => {
 
 	try {
 		await user.save();
-		return {user};
+		return { user };
 	} catch (err) {
 		throw boom.badRequest(err.message);
 	}
 };
 
 module.exports.signIn = async (request, h) => {
-	let {password, email} = request.payload;
+	let { password, email } = request.payload;
 	password = sha256(password).toString();
 
 	try {
-		const user = await User.findOne({email, password, active: true});
+		const user = await User.findOne({ email, password, active: true });
 		const token = jwt.sign(user.toJSON(), 'secret');
-		return {token};
+		return { token };
 	} catch (err) {
 		throw boom.badRequest('Invalid email or password' + err);
 	}
@@ -34,7 +34,7 @@ module.exports.getById = async (request, h) => {
 	let id = request.params.id;
 
 	try {
-		return await User.findOne({_id: id, active: true});
+		return await User.findOne({ _id: id, active: true });
 	} catch (err) {
 		throw boom.badRequest(err);
 	}
@@ -44,7 +44,7 @@ module.exports.update = async (request, h) => {
 	let id = request.params.id;
 
 	try {
-		return await User.findOne({_id: id});
+		return await User.findOne({ _id: id });
 	} catch (err) {
 		throw boom.badRequest(err);
 	}
@@ -54,7 +54,7 @@ module.exports.delete = async (request, h) => {
 	let id = request.params.id;
 
 	try {
-		return await User.findOne({_id: id});
+		return await User.findOne({ _id: id });
 	} catch (err) {
 		throw boom.badRequest(err);
 	}
