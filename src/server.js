@@ -2,7 +2,7 @@
 
 const Hapi = require('hapi');
 const User = require('./user/index');
-const AuthScheme = require('./libs/authorization');
+const AuthScheme = require('./authorization');
 
 // Create a server with a host and port
 const server = Hapi.server({
@@ -10,7 +10,7 @@ const server = Hapi.server({
     port: 3000,
 });
 
-// Add auth
+// Add auth scheme
 server.auth.scheme('hapi-user-api', AuthScheme);
 server.auth.strategy('default', 'hapi-user-api');
 

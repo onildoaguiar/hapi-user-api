@@ -15,17 +15,19 @@ RESTful API for user authentication
 # Stack
 ## Dependencies
 
-* node 8.9.3 (lts)
+* node 8.9.4 (lts)
 * yarn
 * hapi 17
+* boom
 * mongoose
 * jsonwebtoken
+* crypto-js
 
 ## Dev dependencies
 
-*
 * jest
 * eslint
+* eslint-config-google
 * nodemon
 
 ## License
