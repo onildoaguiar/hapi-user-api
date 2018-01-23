@@ -3,6 +3,7 @@
 const boom = require('boom');
 const jwt = require('jsonwebtoken');
 const TokenExtractor = require('./extractor');
+const Config = require('../config/env');
 
 module.exports = function () {
 	return {
@@ -14,7 +15,7 @@ module.exports = function () {
 			}
 
 			try {
-				const credentials = jwt.verify(token, 'secret');
+				const credentials = jwt.verify(token, Config.token.secret);
 
 				return h.authenticated({ credentials, artifacts: token });
 			} catch (err) {

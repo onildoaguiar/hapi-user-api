@@ -11,7 +11,7 @@ describe('User Authentication', () => {
 	const wrongPassword = 'adm1234';
 
 	beforeAll(async () => {
-		await Database.start();
+		await Database.connect();
 	});
 
 	it('Should return "200" for a successful login', async () => {

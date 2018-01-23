@@ -8,8 +8,8 @@ const Console = console;
 // Start the server
 const start = async () => {
 	try {
+		await Database.connect();
 		await Server.start();
-		await Database.start();
 	} catch (err) {
 		Console.log(err);
 		process.exit(1);
