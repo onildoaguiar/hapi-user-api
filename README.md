@@ -16,7 +16,7 @@ RESTful API for user authentication
 # Stack
 ## Dependencies
 
-* node 8.9.4 (lts)
+* node 8.9.4 (LTS)
 * yarn
 * hapi 17
 * boom
