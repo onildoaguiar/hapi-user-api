@@ -1,5 +1,5 @@
 # About
-RESTful API for user authentication
+RESTful API for user authentication.
 
 [![GitHub issues](https://img.shields.io/github/issues/onildoaguiar/hapi-user-api.svg "GitHub issues")](https://github.com/onildoaguiar/hapi-user-api)
 [![GitHub stars](https://img.shields.io/github/stars/onildoaguiar/hapi-user-api.svg "GitHub stars")](https://github.com/onildoaguiar/hapi-user-api)
